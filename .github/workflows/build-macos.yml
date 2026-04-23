@@ -10,6 +10,9 @@ on:
       - 'src/**'
       - 'build_mac.sh'
       - '.github/workflows/build-macos.yml'
+  # Release 发布时构建
+  release:
+    types: [published]
 
 jobs:
   build-macos:
@@ -166,3 +169,11 @@ jobs:
             dist/峄坤加密锁-macOS.dmg
             dist/峄坤加密锁.app
           retention-days: 30
+
+      - name: Upload to Release
+        if: github.event_name == 'release'
+        uses: softprops/action-gh-release@v1
+        with:
+          files: dist/峄坤加密锁-macOS.dmg
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
