@@ -13,7 +13,7 @@ on:
 
 jobs:
   build-macos:
-    runs-on: macos-13  # Intel macOS runner
+    runs-on: macos-latest  # macOS runner (auto-updates)
     
     steps:
       - name: Checkout code
